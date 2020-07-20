@@ -1,0 +1,40 @@
+function focusTab(tabName)
+    hs.application.enableSpotlightForNameSearches(true)
+
+    local app = hs.appfinder.appFromWindowTitlePattern(tabName)
+
+    if app == nil then
+        hs.application.launchOrFocus(tabName)
+    else
+        local windows = app:allWindows()
+
+        for i = 1, #windows do
+            print(windows[i]:title())
+            if windows[i]:title():find(tabName) then
+                windows[i]:focus()
+                windows[i]:raise()
+                break
+            end
+        end
+    end
+end
+
+hs.hotkey.bind({"alt"}, "l", function()
+    hs.eventtap.keyStrokes('console.log()')
+end)
+
+hs.hotkey.bind({"alt"}, "c", function()
+    focusTab("Google Chrome")
+end)
+
+hs.hotkey.bind({"alt"}, "1", function()
+    focusTab("Emacs.app")
+end)
+
+hs.hotkey.bind({"alt"}, "3", function()
+    focusTab("Visual Studio Code")
+end)
+
+hs.hotkey.bind({"alt"}, "z", function()
+    focusTab("Terminal")
+end)
