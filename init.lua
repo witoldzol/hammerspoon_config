@@ -43,3 +43,7 @@ end)
 hs.hotkey.bind({"alt"}, "2", function()
   focusTab("IntelliJ IDEA")
 end)
+
+hs.hotkey.bind({"alt"}, "3", function()
+  focusTab("Visual Studio Code")
+end)
